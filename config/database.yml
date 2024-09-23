@@ -3,7 +3,7 @@ development:
   encoding: unicode
   database: SistemaDeGerenciamento_development
   pool: 5
-  username: postgres
+  username: vinni
   password: adm123
   host: localhost
 
@@ -12,7 +12,7 @@ test:
   encoding: unicode
   database: SistemaDeGerenciamento_test
   pool: 5
-  username: postgres
+  username: vinni
   password: adm123
   host: localhost
 
@@ -21,6 +21,6 @@ production:
   encoding: unicode
   database: SistemaDeGerenciamento_production
   pool: 5
-  username: postgres
+  username: vinni
   password: <%= ENV['DATABASE_PASSWORD'] %>
   host: localhost
