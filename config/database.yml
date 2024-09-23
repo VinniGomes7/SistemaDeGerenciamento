@@ -1,23 +1,26 @@
-default: &default
+development:
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: SistemaDeGerenciamento_development
+  pool: 5
   username: vinni
-  password: adm123 
+  password: adm123
   host: localhost
 
-development:
-  <<: *default
-  database: SistemaDeGerenciamento_development
-
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: SistemaDeGerenciamento_test
+  pool: 5
+  username: vinni
+  password: adm123
+  host: localhost
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: SistemaDeGerenciamento_production
-
-actions:  
-  <<: *default
-  database: SistemaDeGerenciamento_actions
+  pool: 5
+  username: vinni
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: localhost
