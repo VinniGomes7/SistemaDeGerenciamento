@@ -19,8 +19,8 @@ jobs:
 
       steps:
        - name: Checkout Repository
-         uses: actions/checkout@v2  
-   
+         uses: actions/checkout@v3  
+
        - name: Setup Ruby
          uses: ruby/setup-ruby@v1
          with:
@@ -31,7 +31,7 @@ jobs:
            sudo apt-get -yqq install libpq-dev
 
        - name: Cache Ruby Gems
-         uses: actions/cache@v2
+         uses: actions/cache@v3
          with:
            path: vendor/bundle
            key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
