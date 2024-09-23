@@ -1,5 +1,7 @@
 name: CI
-on: [push, pull_request]
+on: 
+  push:
+  pull_request:
 
 jobs:
   test:
@@ -8,7 +10,8 @@ jobs:
     services:
       postgres:
         image: postgres:latest
-        ports: ['5432:5432']
+        ports: 
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -18,19 +21,20 @@ jobs:
           POSTGRES_PASSWORD: password
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout do Repositório
         uses: actions/checkout@v3
 
-      - name: Setup Ruby
+      - name: Configurar Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1.2
 
-      - name: Install PostgreSQL client
+      - name: Instalar cliente PostgreSQL
         run: |
-          sudo apt-get -yqq install libpq-dev
+          sudo apt-get update
+          sudo apt-get install -y libpq-dev
 
-      - name: Cache Ruby Gems
+      - name: Cache de Gems do Ruby
         uses: actions/cache@v3
         with:
           path: vendor/bundle
@@ -38,12 +42,23 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      - name: Bundle Install
+      - name: Instalação do Bundle
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
-      - name: Run Tests
+      - name: Aguardar pelo Postgres
+        run: |
+          for i in {1..30}; do
+            if pg_isready -h localhost -p 5432 -U postgres; then
+              echo "Postgres está pronto!"
+              break
+            fi
+            echo "Aguardando pelo Postgres..."
+            sleep 2
+          done
+
+      - name: Executar Testes
         env:
           PG_DATABASE: postgres
           PG_HOST: localhost
