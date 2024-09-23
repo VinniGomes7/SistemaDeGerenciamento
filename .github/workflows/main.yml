@@ -13,12 +13,14 @@ jobs:
         ports: 
           - 5432:5432
         options: >-
-          --health-cmd pg_isready
+          --health-cmd pg_isready -U postgres
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
         env:
-          POSTGRES_PASSWORD: adm123  # Use a mesma senha definida no database.yml
+          POSTGRES_DB: SistemaDeGerenciamento_test  # Nome do banco de dados de teste
+          POSTGRES_USER: postgres  # O usuário do Postgres
+          POSTGRES_PASSWORD: adm123  # A senha do Postgres
 
     steps:
       - name: Checkout do Repositório
@@ -65,7 +67,7 @@ jobs:
           PG_USER: postgres  # O usuário deve ser postgres
           PG_PASSWORD: adm123  # Use a mesma senha definida
           RAILS_ENV: test  # Altere para 'test'
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}  # Certifique-se de que isso esteja definido nos Secrets do repositório
           WITH_COVERAGE: true
           DISABLE_SPRING: 1
         run: |

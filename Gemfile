@@ -49,5 +49,6 @@ group :test do
   gem "database_cleaner-active_record"  # Adicionado aqui
 end
 
+gem 'pg'
 gem 'devise'
 gem 'rails-controller-testing'
