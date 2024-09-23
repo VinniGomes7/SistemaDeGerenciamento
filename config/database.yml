@@ -7,35 +7,17 @@ default: &default
   host: localhost
 
 development:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: SistemaDeGerenciamento_development
-  pool: 5
-  username: vinni
-  password: adm123
-  host: localhost
 
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: SistemaDeGerenciamento_test
-  pool: 5
-  username: vinni
-  password: adm123
-  host: localhost
 
 production:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: SistemaDeGerenciamento_production
-  pool: 5
-  username: vinni
-  password: adm123
-  host: localhost
-
 
 actions:  
   <<: *default
   database: SistemaDeGerenciamento_actions  # Nome do banco para o ambiente actions
-  username: vinni  
-  password: adm123
