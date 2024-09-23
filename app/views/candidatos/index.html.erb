@@ -1,0 +1,26 @@
+<h1>Candidatos</h1>
+<%= link_to 'Novo Candidato', new_candidato_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @candidatos.each do |candidato| %>
+      <tr>
+        <td><%= candidato.nome %></td>
+        <td><%= candidato.email %></td>
+        <td><%= candidato.telefone %></td>
+        <td>
+          <%= link_to 'Mostrar', candidato %>
+          <%= link_to 'Editar', edit_candidato_path(candidato) %>
+          <%= link_to 'Remover', candidato, method: :delete, data: { confirm: 'Tem certeza?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

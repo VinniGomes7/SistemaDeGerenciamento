@@ -1,0 +1,30 @@
+<h1>Novo Empregador</h1>
+
+<%= form_with(model: @empregador, local: true) do |form| %>
+  <% if @empregador.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@empregador.errors.count, "erro") %> proibiu este empregador de ser salvo:</h2>
+      <ul>
+        <% @empregador.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Voltar', empregadores_path %>

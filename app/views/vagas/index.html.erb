@@ -1,0 +1,26 @@
+<h1>Vagas</h1>
+
+<%= link_to 'Nova Vaga', new_vaga_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Descrição</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @vagas.each do |vaga| %>
+      <tr>
+        <td><%= vaga.titulo %></td>
+        <td><%= vaga.descricao %></td>
+        <td>
+          <%= link_to 'Mostrar', vaga_path(vaga) %>
+          <%= link_to 'Editar', edit_vaga_path(vaga) %>
+          <%= link_to 'Deletar', vaga_path(vaga), method: :delete, data: { confirm: 'Você tem certeza?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,17 @@
+<h1>Novo Candidato</h1>
+<%= form_with model: @candidato do |form| %>
+  <p>
+    <%= form.label :nome %><br>
+    <%= form.text_field :nome %>
+  </p>
+  <p>
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
+  </p>
+  <p>
+    <%= form.label :telefone %><br>
+    <%= form.text_field :telefone %>
+  </p>
+  <%= form.submit 'Criar' %>
+<% end %>
+<%= link_to 'Voltar', candidatos_path %>

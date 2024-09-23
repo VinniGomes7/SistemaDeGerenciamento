@@ -1,0 +1,24 @@
+<h1>Usuários</h1>
+<%= link_to 'Novo Usuário', new_usuario_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Nome de Usuário</th>
+      <th>Email</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @usuarios.each do |usuario| %>
+      <tr>
+        <td><%= usuario.username %></td>
+        <td><%= usuario.email %></td>
+        <td>
+          <%= link_to 'Mostrar', usuario_path(usuario) %>
+          <%= link_to 'Editar', edit_usuario_path(usuario) %>
+          <%= link_to 'Excluir', usuario_path(usuario), method: :delete, data: { confirm: 'Tem certeza?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

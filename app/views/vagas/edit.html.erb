@@ -1,0 +1,30 @@
+<h1>Editar Vaga</h1>
+
+<%= form_with(model: @vaga, local: true) do |form| %>
+  <% if @vaga.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vaga.errors.count, "erro") %> proibiu esta vaga de ser salva:</h2>
+      <ul>
+        <% @vaga.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :titulo %>
+    <%= form.text_field :titulo %>
+  </div>
+
+  <div>
+    <%= form.label :descricao %>
+    <%= form.text_area :descricao %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Voltar', vagas_path %>

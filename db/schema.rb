@@ -10,8 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_23_194841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "candidatos", force: :cascade do |t|
+    t.string "nome", null: false
+    t.string "email", null: false
+    t.string "telefone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "candidaturas", force: :cascade do |t|
+    t.bigint "candidato_id", null: false
+    t.bigint "vaga_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidato_id"], name: "index_candidaturas_on_candidato_id"
+    t.index ["vaga_id"], name: "index_candidaturas_on_vaga_id"
+  end
+
+  create_table "empregadors", force: :cascade do |t|
+    t.string "nome", null: false
+    t.string "email", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "telefone"
+  end
+
+  create_table "usuarios", force: :cascade do |t|
+    t.string "nome"
+    t.string "email"
+    t.string "senha_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "password_digest"
+  end
+
+  create_table "vagas", force: :cascade do |t|
+    t.string "titulo", null: false
+    t.text "descricao"
+    t.bigint "empregador_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "description"
+    t.index ["empregador_id"], name: "index_vagas_on_empregador_id"
+  end
+
+  add_foreign_key "candidaturas", "candidatos"
+  add_foreign_key "candidaturas", "vagas"
+  add_foreign_key "vagas", "empregadors"
 end

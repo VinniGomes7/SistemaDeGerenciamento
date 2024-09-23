@@ -1,0 +1,6 @@
+<h1><%= @empregador.nome %></h1>
+
+<p><strong>Email:</strong> <%= @empregador.email %></p>
+
+<%= link_to 'Editar', edit_empregadore_path(@empregador) %> | <!-- Alterado -->
+<%= link_to 'Voltar', empregadores_path %>

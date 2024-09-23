@@ -1,0 +1,7 @@
+<h1>Teste</h1> 
+  <p><strong>Nome:</strong> <%= @candidato.nome %></p>
+  <p><strong>Email:</strong> <%= @candidato.email %></p>
+  <p><strong>Telefone:</strong> <%= @candidato.telefone %></p>
+  <%= link_to 'Editar', edit_candidato_path(@candidato) %> |
+  <%= link_to 'Voltar', candidatos_path %>
+  
