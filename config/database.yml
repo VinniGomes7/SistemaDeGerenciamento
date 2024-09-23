@@ -7,18 +7,32 @@ default: &default
   host: localhost
 
 development:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: SistemaDeGerenciamento_development
+  pool: 5
+  username: vinni
+  password: adm123
+  host: localhost
 
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: SistemaDeGerenciamento_test
+  pool: 5
+  username: vinni
+  password: adm123
+  host: localhost
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: SistemaDeGerenciamento_production
-  username: SistemaDeGerenciamento  # Caso deseje um usuário específico
-  password: <%= ENV["SISTEMADEGERENCIAMENTO_DATABASE_PASSWORD"] %>
+  pool: 5
+  username: vinni
+  password: adm123
+  host: localhost
+
 
 actions:  
   <<: *default
