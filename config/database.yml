@@ -19,3 +19,9 @@ production:
   database: SistemaDeGerenciamento_production
   username: SistemaDeGerenciamento  # Caso deseje um usuário específico
   password: <%= ENV["SISTEMADEGERENCIAMENTO_DATABASE_PASSWORD"] %>
+
+actions:  
+  <<: *default
+  database: SistemaDeGerenciamento_actions  # Nome do banco para o ambiente actions
+  username: vinni  
+  password: adm123
