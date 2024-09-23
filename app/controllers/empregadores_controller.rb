@@ -1,0 +1,2 @@
+class EmpregadoresController < ApplicationController
+end
