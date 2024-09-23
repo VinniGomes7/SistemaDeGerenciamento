@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: vinni  # Substitua pelo seu usuário PostgreSQL
-  password: adm123  # Substitua pela sua senha PostgreSQL
+  username: vinni
+  password: adm123 
   host: localhost
 
 development:
@@ -20,4 +20,4 @@ production:
 
 actions:  
   <<: *default
-  database: SistemaDeGerenciamento_actions  # Nome do banco para o ambiente actions
+  database: SistemaDeGerenciamento_actions
