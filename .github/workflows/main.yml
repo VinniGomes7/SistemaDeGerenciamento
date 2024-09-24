@@ -48,6 +48,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
+      - name: Instalar Gems
+        run: |
+          bundle install --path vendor/bundle
+
       - name: Aguardar pelo Postgres
         run: |
           for i in {1..30}; do
