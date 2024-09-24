@@ -17,10 +17,10 @@ jobs:
         ports:
           - 5433:5432
         options: >-
-          --health-cmd pg_isready -U postgres -p 5432
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          --health-cmd="pg_isready -d SistemaDeGerenciamento_test -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
         env:
           POSTGRES_DB: SistemaDeGerenciamento_test
           POSTGRES_USER: postgres
@@ -34,11 +34,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1.2
-
-      - name: Instalar Bundler e Gems
-        run: |
-          gem install bundler
-          bundle install
 
       - name: Instalar Cliente PostgreSQL
         run: |
