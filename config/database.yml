@@ -1,27 +1,20 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: SistemaDeGerenciamento_development
   pool: 5
   username: vinni
-  password: <%= ENV['DATABASE_PASSWORD'] %> 
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   host: localhost
 
+development:
+  <<: *default
+  database: SistemaDeGerenciamento_development
+
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: SistemaDeGerenciamento_test
-  pool: 5
-  username: vinni
-  password: <%= ENV['DATABASE_PASSWORD'] %>  
-  host: localhost
   port: 5433
 
 production:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: SistemaDeGerenciamento_production
-  pool: 5
-  username: vinni
-  password: <%= ENV['DATABASE_PASSWORD'] %>  
-  host: localhost
