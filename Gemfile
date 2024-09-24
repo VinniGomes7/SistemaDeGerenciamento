@@ -46,9 +46,12 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem "database_cleaner-active_record"  # Adicionado aqui
+  gem "database_cleaner-active_record" 
 end
 
-gem 'pg'
+group :test do
+  gem 'factory_bot_rails'
+end
+
 gem 'devise'
 gem 'rails-controller-testing'

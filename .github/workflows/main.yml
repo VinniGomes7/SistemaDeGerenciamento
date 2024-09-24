@@ -20,7 +20,7 @@ jobs:
         env:
           POSTGRES_DB: SistemaDeGerenciamento_test  # Nome do banco de dados de teste
           POSTGRES_USER: postgres  # O usuário do Postgres
-          POSTGRES_PASSWORD: adm123  # A senha do Postgres
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}  # Use o secret do GitHub Actions
 
     steps:
       - name: Checkout do Repositório
@@ -44,11 +44,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      - name: Instalação do Bundle
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-
       - name: Aguardar pelo Postgres
         run: |
           for i in {1..30}; do
@@ -60,17 +55,27 @@ jobs:
             sleep 2
           done
 
-      - name: Executar Testes
+      - name: Configurar Banco de Dados
         env:
           PG_DATABASE: SistemaDeGerenciamento_test  # Nome do banco de dados de teste
           PG_HOST: localhost
           PG_USER: postgres  # O usuário deve ser postgres
-          PG_PASSWORD: adm123  # Use a mesma senha definida
+          PG_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}  # Use a mesma senha definida nos secrets
           RAILS_ENV: test  # Altere para 'test'
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}  # Certifique-se de que isso esteja definido nos Secrets do repositório
-          WITH_COVERAGE: true
-          DISABLE_SPRING: 1
         run: |
           bundle exec rails db:create  # Criação do banco de dados de teste
           bundle exec rails db:migrate  # Migrações para o banco de dados de teste
+
+      - name: Executar Testes
+        env:
+          PG_DATABASE: SistemaDeGerenciamento_test
+          PG_HOST: localhost
+          PG_USER: postgres
+          PG_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          WITH_COVERAGE: true
+          DISABLE_SPRING: 1
+        run: |
           bundle exec rails test  # Executa os testes

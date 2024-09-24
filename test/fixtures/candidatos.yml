@@ -1,11 +1,10 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+# test/fixtures/candidatos.yml
 one:
-  nome: MyString
-  email: MyString
-  telefone: MyString
+  nome: "Candidato Um"
+  email: "candidato1@example.com"
+  telefone: "123456789"
 
 two:
-  nome: MyString
-  email: MyString
-  telefone: MyString
+  nome: "Candidato Dois"
+  email: "candidato2@example.com"
+  telefone: "987654321"

@@ -1,11 +1,10 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
+# test/fixtures/empregadors.yml
 one:
-  nome: MyString
-  email: MyString
-  telefone: MyString
+  nome: "Empregador Um"
+  email: "empregador1@example.com"
+  telefone: "1122334455"
 
 two:
-  nome: MyString
-  email: MyString
-  telefone: MyString
+  nome: "Empregador Dois"
+  email: "empregador2@example.com"
+  telefone: "5544332211"

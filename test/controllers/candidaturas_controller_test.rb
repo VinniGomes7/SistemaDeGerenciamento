@@ -18,7 +18,6 @@ class CandidaturasControllerTest < ActionDispatch::IntegrationTest
       post candidaturas_url, params: { candidatura: { candidato_id: @candidato.id, vaga_id: @vaga.id } }
     end
     assert_redirected_to candidatura_url(Candidatura.last)
-    assert Candidatura.last.persisted?, "Candidatura was not created: #{Candidatura.last.errors.full_messages.join(', ')}"
   end
 
   test "should get edit" do

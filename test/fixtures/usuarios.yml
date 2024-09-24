@@ -1,11 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  nome: MyString
-  email: MyString
-  senha_digest: MyString
+  nome: "Usuario Um"
+  email: "usuario1@example.com"
+  password_digest: "<senha_criptografada_1>"
+  username: "usuario1"
 
 two:
-  nome: MyString
-  email: MyString
-  senha_digest: MyString
+  nome: "Usuario Dois"
+  email: "usuario2@example.com"
+  password_digest: "<senha_criptografada_2>"
+  username: "usuario2"
