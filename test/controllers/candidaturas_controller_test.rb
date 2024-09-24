@@ -9,7 +9,7 @@ class CandidaturasControllerTest < ActionDispatch::IntegrationTest
 
     @empregador = Empregador.create(nome: "Empresa XYZ", email: "contato@empresa.xyz")
     @candidato = Candidato.create(nome: "Teste", email: "teste@example.com", telefone: "123456789")
-    @vaga = Vaga.create(titulo: "Desenvolvedor", descricao: "Vaga para desenvolvedor", empregador: @empregador)
+    @vaga = Vaga.create(title: "Desenvolvedor", description: "Vaga para desenvolvedor", empregador: @empregador)
     @candidatura = Candidatura.create(candidato: @candidato, vaga: @vaga)
   end
 

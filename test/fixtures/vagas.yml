@@ -1,9 +1,9 @@
 one:
-  titulo: "Vaga Um"
-  descricao: "Descrição da vaga um"
+  title: "Vaga Um"
+  description: "Descrição da vaga um"
   empregador: one
 
 two:
-  titulo: "Vaga Dois"
-  descricao: "Descrição da vaga dois"
+  title: "Vaga Dois"
+  description: "Descrição da vaga dois"
   empregador: two

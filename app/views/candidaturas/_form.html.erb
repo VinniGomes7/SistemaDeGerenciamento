@@ -1,27 +1,30 @@
-<%= form_with(model: candidatura, local: true) do |form| %>
-    <% if candidatura.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(candidatura.errors.count, "error") %> prohibited this candidatura from being saved:</h2>
-        <ul>
-          <% candidatura.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  
-    <div>
-      <%= form.label :candidato_id %>
-      <%= form.collection_select :candidato_id, Candidato.all, :id, :nome %>
-    </div>
-  
-    <div>
-      <%= form.label :vaga_id %>
-      <%= form.collection_select :vaga_id, Vaga.all, :id, :titulo %>
-    </div>
-  
-    <div>
-      <%= form.submit %>
+<h1><%= @candidatura.new_record? ? 'Nova Candidatura' : 'Editar Candidatura' %></h1>
+
+<%= form_with(model: @candidatura, local: true) do |form| %>
+  <% if @candidatura.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@candidatura.errors.count, "erro") %> proibiu esta candidatura de ser salva:</h2>
+      <ul>
+        <% @candidatura.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
-  
+
+  <div>
+    <%= form.label :vaga_id, "Vaga" %>
+    <%= form.collection_select :vaga_id, Vaga.all, :id, :title %>
+  </div>
+
+  <div>
+    <%= form.label :candidato_id, "Candidato" %>
+    <%= form.collection_select :candidato_id, Candidato.all, :id, :nome %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Voltar', candidaturas_path %>

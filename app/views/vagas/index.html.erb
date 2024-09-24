@@ -13,8 +13,8 @@
   <tbody>
     <% @vagas.each do |vaga| %>
       <tr>
-        <td><%= vaga.titulo %></td>
-        <td><%= vaga.descricao %></td>
+        <td><%= vaga.title %></td>
+        <td><%= vaga.description %></td>
         <td>
           <%= link_to 'Mostrar', vaga_path(vaga) %>
           <%= link_to 'Editar', edit_vaga_path(vaga) %>
