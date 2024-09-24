@@ -10,7 +10,7 @@ gem "rails", "~> 7.0.4"
 gem "sprockets-rails"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"  # Mantive apenas uma linha para a gem pg
+gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -49,5 +49,6 @@ group :test do
   gem "database_cleaner-active_record"  # Adicionado aqui
 end
 
+gem 'pg'
 gem 'devise'
 gem 'rails-controller-testing'
