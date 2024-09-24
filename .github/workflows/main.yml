@@ -1,7 +1,11 @@
 name: CI
-on: 
+on:
   push:
+    branches:
+      - main
   pull_request:
+    branches:
+      - main
 
 jobs:
   test:
@@ -10,7 +14,7 @@ jobs:
     services:
       postgres:
         image: postgres:latest
-        ports: 
+        ports:
           - 5432:5432
         options: >-
           --health-cmd pg_isready -U postgres
@@ -18,9 +22,9 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         env:
-          POSTGRES_DB: SistemaDeGerenciamento_test  # Nome do banco de dados de teste
-          POSTGRES_USER: postgres  # O usuário do Postgres
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}  # Use o secret do GitHub Actions
+          POSTGRES_DB: SistemaDeGerenciamento_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
     steps:
       - name: Checkout do Repositório
@@ -31,7 +35,7 @@ jobs:
         with:
           ruby-version: 3.1.2
 
-      - name: Instalar cliente PostgreSQL
+      - name: Instalar Cliente PostgreSQL
         run: |
           sudo apt-get update
           sudo apt-get install -y libpq-dev
@@ -57,15 +61,15 @@ jobs:
 
       - name: Configurar Banco de Dados
         env:
-          PG_DATABASE: SistemaDeGerenciamento_test  # Nome do banco de dados de teste
+          PG_DATABASE: SistemaDeGerenciamento_test
           PG_HOST: localhost
-          PG_USER: postgres  # O usuário deve ser postgres
-          PG_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}  # Use a mesma senha definida nos secrets
-          RAILS_ENV: test  # Altere para 'test'
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}  # Certifique-se de que isso esteja definido nos Secrets do repositório
+          PG_USER: postgres
+          PG_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
-          bundle exec rails db:create  # Criação do banco de dados de teste
-          bundle exec rails db:migrate  # Migrações para o banco de dados de teste
+          bundle exec rails db:create
+          bundle exec rails db:migrate
 
       - name: Executar Testes
         env:
@@ -78,4 +82,4 @@ jobs:
           WITH_COVERAGE: true
           DISABLE_SPRING: 1
         run: |
-          bundle exec rails test  # Executa os testes
+          bundle exec rails test

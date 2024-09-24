@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema de Gerenciamento</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+
+<body>
+  <h1>Bem-vindo ao Sistema de Gerenciamento</h1>
+  <ul>
+    <li><%= link_to 'Candidatos', candidatos_path %></li>
+    <li><%= link_to 'Candidaturas', candidaturas_path %></li>
+    <li><%= link_to 'Vagas', vagas_path %></li>
+    <li><%= link_to 'Usuários', usuarios_path %></li>
+    <li><%= link_to 'Empregadores', empregadores_path %></li>
+  </ul>
+</body>
+</html>
