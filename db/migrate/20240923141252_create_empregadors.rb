@@ -7,5 +7,7 @@ class CreateEmpregadors < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    add_index :empregadors, :email, unique: true
   end
 end

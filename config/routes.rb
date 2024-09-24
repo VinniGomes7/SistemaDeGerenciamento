@@ -1,5 +1,8 @@
+# config/routes.rb
 Rails.application.routes.draw do
-  get 'home/index'
+  root "home#index"
+
+  # Recursos
   resources :candidatos
   resources :candidaturas
   resources :vagas
@@ -7,7 +10,7 @@ Rails.application.routes.draw do
   resources :empregadores
   
   # Rotas para login e logout
-  root "home#index"
+  get 'login', to: 'sessions#new', as: 'new_session'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 end

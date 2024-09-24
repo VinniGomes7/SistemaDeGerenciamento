@@ -1,0 +1,23 @@
+<h1>Login</h1>
+
+<%= form_with(url: login_path, local: true) do |form| %>
+  <% if flash[:danger] %>
+    <div class="alert alert-danger">
+      <%= flash[:danger] %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :login, "Email ou Nome de Usuário" %>
+    <%= form.text_field :login %>
+  </div>
+
+  <div>
+    <%= form.label :password, "Senha" %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.submit "Entrar" %>
+  </div>
+<% end %>

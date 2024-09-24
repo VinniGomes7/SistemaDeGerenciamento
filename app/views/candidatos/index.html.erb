@@ -18,7 +18,7 @@
         <td>
           <%= link_to 'Mostrar', candidato %>
           <%= link_to 'Editar', edit_candidato_path(candidato) %>
-          <%= link_to 'Remover', candidato, method: :delete, data: { confirm: 'Tem certeza?' } %>
+          <%= link_to 'Excluir', candidato_path(candidato), method: :delete, data: { confirm: 'Tem certeza?' } %>
         </td>
       </tr>
     <% end %>

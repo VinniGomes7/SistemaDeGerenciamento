@@ -1,4 +1,5 @@
 class CandidatosController < ApplicationController
+  before_action :require_login
   def index
     @candidatos = Candidato.all
   end
@@ -36,8 +37,9 @@ class CandidatosController < ApplicationController
   def destroy
     @candidato = Candidato.find(params[:id])
     @candidato.destroy
-    redirect_to candidatos_path, notice: 'Candidato removido com sucesso.'
-  end
+    flash[:success] = "Candidato removido com sucesso."
+    redirect_to candidatos_url
+  end  
 
   private
 

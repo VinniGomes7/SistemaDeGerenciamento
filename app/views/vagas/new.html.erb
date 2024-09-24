@@ -1,4 +1,4 @@
-<h1>Nova Vaga</h1>
+<h1>Criar Nova Vaga</h1>
 
 <%= form_with(model: @vaga, local: true) do |form| %>
   <% if @vaga.errors.any? %>
@@ -13,17 +13,22 @@
   <% end %>
 
   <div>
-    <%= form.label :title %>
+    <%= form.label :title, "Título da Vaga" %>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :description %>
+    <%= form.label :description, "Descrição da Vaga" %>
     <%= form.text_area :description %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.label :empregador_id, "Empregador" %>
+    <%= form.number_field :empregador_id %>
+  </div>
+
+  <div>
+    <%= form.submit "Criar Vaga" %>
   </div>
 <% end %>
 
