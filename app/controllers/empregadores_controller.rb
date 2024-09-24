@@ -14,7 +14,7 @@ class EmpregadoresController < ApplicationController
   def create
     @empregador = Empregador.new(empregador_params)
     if @empregador.save
-      redirect_to empregadore_url(@empregador), notice: 'Empregador criado com sucesso.' # Corrigido
+      redirect_to empregadore_url(@empregador), notice: 'Empregador criado com sucesso.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class EmpregadoresController < ApplicationController
   def update
     @empregador = Empregador.find(params[:id])
     if @empregador.update(empregador_params)
-      redirect_to empregadore_url(@empregador), notice: 'Empregador atualizado com sucesso.' # Corrigido
+      redirect_to empregadore_url(@empregador), notice: 'Empregador atualizado com sucesso.'
     else
       render :edit
     end
