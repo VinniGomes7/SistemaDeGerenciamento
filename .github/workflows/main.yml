@@ -17,13 +17,13 @@ jobs:
         ports:
           - 5433:5432
         options: >-
-          --health-cmd="pg_isready -d SistemaDeGerenciamento_test -U postgres"
+          --health-cmd="pg_isready -d SistemaDeGerenciamento_test -U ${{ secrets.POSTGRES_USER }}"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
         env:
           POSTGRES_DB: SistemaDeGerenciamento_test
-          POSTGRES_USER: postgres
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
 
     steps:
@@ -55,7 +55,7 @@ jobs:
       - name: Aguardar pelo Postgres
         run: |
           for i in {1..30}; do
-            if pg_isready -h localhost -p 5433 -U postgres; then
+            if pg_isready -h localhost -p 5433 -U ${{ secrets.POSTGRES_USER }}; then
               echo "Postgres está pronto!"
               break
             fi
@@ -67,7 +67,7 @@ jobs:
         env:
           PG_DATABASE: SistemaDeGerenciamento_test
           PG_HOST: localhost
-          PG_USER: postgres
+          PG_USER: ${{ secrets.POSTGRES_USER }}
           PG_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
@@ -82,7 +82,7 @@ jobs:
         env:
           PG_DATABASE: SistemaDeGerenciamento_test
           PG_HOST: localhost
-          PG_USER: postgres
+          PG_USER: ${{ secrets.POSTGRES_USER }}
           PG_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
